@@ -47,6 +47,7 @@
           <strong>Applied Scenraio</strong>, <strong>Flow Referential</strong> and <strong>Toplogical</strong>, to test different aspects of MLLMs.</p>
         <p>Our final dataset includes <strong>1,121</strong> WikiHow articles, <strong>701</strong> Instructables blogs, and <strong>450</strong> FloCo flowcharts 
           along with a total of <strong>22,413</strong> diverse question-answer pairs.</p>
+        <img src="figures/Dataset_distribution.png" alt="Flowchart Generation Pipeline"style="width: 70%; margin: 0 auto; display: block;">
 
       <h2>
         <a id="user-content-header-2" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Flowchart Generation</h2>
@@ -62,58 +63,39 @@
       <h2>
         <a id="user-content-header-2" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Question Generation</h2>
         <img src="figures/QA_generation.png" alt="Question Generation Pipeline">
+        <p>Our Q/A creation process encompasses four distinct question types: Fact Retrieval, Applied 
+          Scenario, Flow Referential, and Topological Q/A. Fact Retrieval involves extracting factual 
+          information from flowchart nodes, Applied Scenario tests practical application skills, Flow 
+          Referential focuses on specific sub-graphs, and Topological Q/A explores the larger flowchart 
+          structure. To generate high-quality Q/A pairs, we query GPT-4 using tagged textual representation, 
+          Mermaid.js script, and text-only few-shot examples. Topological Q/A pairs are produced by parsing 
+          the Mermaid script and creating adjacnecy matrices from them. The questions are template based 
+          and quantitative answers are extracted using networkx. We ensure evaluation consistency by generating 
+          three paraphrased gold answers for each question type, accommodating syntactic and semantic 
+          variations. </p>
       <h2>
         <a id="user-content-header-2" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h2>
-      
+      <p>Examples from our dataset can be viewed <a href="https://purvichaurasia.notion.site/FlowVQA-Examples-61fa4e22d1b74ec28305438c3a24b86f?pvs=4">here</a>.</p>
         <h2>
-          <a id="user-content-header-2" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Result</h2>
-
+          <a id="user-content-header-2" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Experimental Results</h2>
+          <img src="figures/ExperimentalResult.png" alt="Experimental Results on the test set of FlowVQA">
       <blockquote>
-      <p>This is a blockquote following a header. Bacon ipsum dolor sit amet t-bone doner shank drumstick, pork belly porchetta chuck sausage brisket ham hock rump pig. Chuck kielbasa leberkas, pork bresaola ham hock filet mignon cow shoulder short ribs biltong.</p>
+      <p>We perform evaluation on 3 different strategies: <strong>Zero Shot</strong>, <strong>Zero Shot with Chain-of-thought prompting</strong> and <strong>Few Shot Chain-of-thought prompting with Reasong Directives</strong>. The last strategy is our novel approach for decomposing the flowchart for better QA performance. We have fine-tuned (FT) the Qwen-VL Chat model as well.</p>
       </blockquote>
+      <p>FlowVQA poses a considerable challenge for models, evident in evaluations highlighting opportunities 
+        for improvement. The leading strategy, GPT-4 with Few-shot directive-based prompting, achieves 
+        a notable 68.42% Majority Voting score. Few-Shot Directives prove effective, showing a considerable
+        improvement in most models. Fine-tuning Qwen-VL-chat with 
+        Zero-Shot and Zero-Shot CoT strategies results in a 3% and 11% improvement, respectively, 
+        underscoring the importance of fine-tuning for addressing flowchart understanding limitations 
+        in original pretraining. The fine-tuned model surpasses all existing open-source models, 
+        emphasizing FlowVQA's potential in introducing visual logic and reasoning to MLLMs.</p>
 
       <h2>
         <a id="user-content-header-2" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>People</h2>
-
       <h2>
       <a id="user-content-header-2" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Citation</h3>
-
       <pre><code>This is a code block following a header.</code></pre>
-
-      <h4>
-      <a id="user-content-header-4" class="anchor" href="#header-4" aria-hidden="true"><span class="octicon octicon-link"></span></a>Header 4</h4>
-
-      <ul class="task-list">
-      <li>This is an unordered list following a header.</li>
-      <li>This is an unordered list following a header.</li>
-      <li>This is an unordered list following a header.</li>
-      </ul>
-      <table>
-      <thead>
-      <tr>
-      <th>What</th>
-      <th>Follows</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-      <td>A table</td>
-      <td>A header</td>
-      </tr>
-      <tr>
-      <td>A table</td>
-      <td>A header</td>
-      </tr>
-      <tr>
-      <td>A table</td>
-      <td>A header</td>
-      </tr>
-      </tbody>
-      </table>
-
-      <hr>
-
-      <p>There's a horizontal rule above and below this.</p>
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/jasonlong/cayman-theme">Cayman</a> is maintained by <a href="https://github.com/jasonlong">jasonlong</a>.</span>
         <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
