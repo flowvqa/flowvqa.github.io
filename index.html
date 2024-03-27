@@ -30,8 +30,8 @@
 
       <p>Current benchmarks for visual question answering fall short in evaluating crucial aspects 
         like visual grounding and spatial reasoning skills. We introduce FlowVQA, a novel benchmark 
-        aimed at assessing the capabilities of visual question-answering multimodal language models 
-        in reasoning with flowcharts as visual contexts. This innovative benchmark brings together 
+        aimed at assessing the capabilities of visual question-answering MLLMs 
+        with flowcharts as visual contexts. This innovative benchmark brings together 
         2,272 carefully generated flowchart images and 22,413 question-answer pairs, challenging 
         multimodal language models with tasks like information localization, decision-making, and 
         logical progression. Our findings underscore the limitations of State-of-the-Art models across
@@ -51,49 +51,125 @@
 
       <h2>
         <a id="user-content-header-2" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Flowchart Generation</h2>
-        <img src="figures/Flowchart_generation.png" alt="Flowchart Generation Pipeline">
+        <img src="figures\Flowchart Generation (3).png" alt="Flowchart Generation Pipeline" style="margin-left: -90px;">
         <p>
           Our core approach centers on converting <em>any process-based workflow, regardless of its domain,
            into a flowchart for a detailed step-by-step representation</em>. The conversion from source 
-           articles to flowchart Mermaid Scripts involves a two-step process. Initially, GPT-4 generates 
+           articles to flowchart Mermaid Scripts involves a two-step process, as shown in the figure. 
+           <!-- Initially, GPT-4 generates 
            a structured representation with functional control tags from the source text, transforming 
            it into a tagged textual representation suitable for Mermaid flowchart scripts. In the second 
            step, we use this output to create a top-down Mermaid.js flowchart script, mapping steps to 
-           node types with control tags. The resulting scripts are compiled into high-resolution PNG images.</p>
+           node types with control tags. The resulting scripts are compiled into high-resolution PNG images. --></p>
       <h2>
         <a id="user-content-header-2" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Question Generation</h2>
-        <img src="figures/QA_generation.png" alt="Question Generation Pipeline">
+        <img src="figures/QA_generation.png" alt="Question Generation Pipeline" width="1000px" height="auto">
         <p>Our Q/A creation process encompasses four distinct question types: Fact Retrieval, Applied 
-          Scenario, Flow Referential, and Topological Q/A. Fact Retrieval involves extracting factual 
+          Scenario, Flow Referential, and Topological Q/A. 
+          <!-- Fact Retrieval involves extracting factual 
           information from flowchart nodes, Applied Scenario tests practical application skills, Flow 
           Referential focuses on specific sub-graphs, and Topological Q/A explores the larger flowchart 
-          structure. To generate high-quality Q/A pairs, we query GPT-4 using tagged textual representation, 
+          structure. --> To generate high-quality Q/A pairs, we query GPT-4 using tagged textual representation, 
           Mermaid.js script, and text-only few-shot examples. Topological Q/A pairs are produced by parsing 
-          the Mermaid script and creating adjacnecy matrices from them. The questions are template based 
+          the Mermaid script and creating adjacnecy matrices from them. 
+          <!-- The questions are template based 
           and quantitative answers are extracted using networkx. We ensure evaluation consistency by generating 
           three paraphrased gold answers for each question type, accommodating syntactic and semantic 
-          variations. </p>
-      <h2>
-        <a id="user-content-header-2" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h2>
-      <p>Examples from our dataset can be viewed <a href="https://purvichaurasia.notion.site/FlowVQA-Examples-61fa4e22d1b74ec28305438c3a24b86f?pvs=4" target="_blank">here</a>.</p>
+          variations.--> </p>
+            
+          <h2>
+            <a id="user-content-header-2" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example
+          </h2>
+          <div style="display: flex; justify-content: flex-end; align-items: center;">
+            <div>
+              <p><strong>Fact Retrieval</strong></p>
+              <ul>
+                <li><strong>Q:</strong>What triggers the LED to light up?</li>
+                <li><strong>A:</strong>Receiving a text or call</li>
+              </ul>
+              <p><strong>Flow Referential</strong></p>
+              <ul>
+                <li><strong>Q:</strong> Suppose the LED has just lit up by the LDR. What was the immediate previous step, and what decision do I need to make next?</li>
+                <li><strong>A:</strong> The immediate previous step was waiting for a text or call, and the next decision is to determine if the LDR value is indicating a command.</li>
+              </ul>
+              <p><strong>Applied Scenario</strong></p>
+              <ul>
+                <li><strong>Q:</strong> Jasmine has just received a picture message on her working cellphone, which was sent from her DIY surveillance system using the modified Sony Ericsson T630. Prior to this, what sequence of actions did the system perform to capture and send the picture to Jasmine?</li>
+                <li><strong>A:</strong> The system executed the 'run' command sequence to navigate the phone's menu, took a picture, attached it to a message, and sent it to Jasmine.</li>
+              </ul>
+              <p><strong>Topological</strong></p>
+              <ul>
+                <li><strong>Q:</strong> How many nodes exist in the given flowchart?</li>
+                <li><strong>A:</strong> 22</li>
+              </ul>
+              <p>Hover on the image to expand it. More examples from our dataset can be viewed <a href="[1](https://purvichaurasia.notion.site/FlowVQA-Examples-61fa4e22d1b74ec28305438c3a24b86f?pvs=4)" target="_blank">here</a>.</p>
+            </div>
+            <img src="figures/instruct00094.png" alt="Example image from instructables" width="200px" height="auto" style="margin-left: 20px;" onmouseenter="enlargeImg()" onmouseleave="resetImg()" id="img1">
+          </div>
+          
+      <!-- script to set display property -->
+    <script>
+      // Get the img object using its Id
+      img = document.getElementById("img1");
+      // Function to increase image size
+      function enlargeImg() {
+          // Set image size to 1.5 times original
+          img.style.transform = "scale(2)";
+          // Animation effect
+          img.style.transition = "transform 0.25s ease";
+      }
+      // Function to reset image size
+      function resetImg() {
+          // Set image size to original
+          img.style.transform = "scale(1)";
+          img.style.transition = "transform 0.25s ease";
+      }
+  </script>
         <h2>
           <a id="user-content-header-2" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Experimental Results</h2>
-          <img src="figures/ExperimentalResult.png" alt="Experimental Results on the test set of FlowVQA">
+          <img src="figures/ExperimentalResult.png" alt="Experimental Results on the test set of FlowVQA" width="900px" height="auto">
       <blockquote>
       <p>We perform evaluation on 3 different strategies: <strong>Zero Shot</strong>, <strong>Zero Shot with Chain-of-thought prompting</strong> and <strong>Few Shot Chain-of-thought prompting with Reasong Directives</strong>. The last strategy is our novel approach for decomposing the flowchart for better QA performance.</p>
       </blockquote>
       <p>FlowVQA poses a considerable challenge for models, evident in evaluations highlighting opportunities 
         for improvement. The leading strategy, GPT-4 with Few-shot directive-based prompting, achieves 
-        a notable 68.42% Majority Voting score. Few-Shot Directives prove effective, showing a considerable
-        improvement in most models. Fine-tuning Qwen-VL-chat with 
-        Zero-Shot and Zero-Shot CoT strategies results in a 3% and 11% improvement, respectively, 
-        underscoring the importance of fine-tuning for addressing flowchart understanding limitations 
-        in original pretraining. The fine-tuned model surpasses all existing open-source models, 
-        emphasizing FlowVQA's potential in introducing visual logic and reasoning to MLLMs.</p>
+        a notable 68.42% Majority Voting score. The Qwen-VL-chat fine-tuned model surpasses all existing open-source models, 
+        underscoring the importance of fine-tuning for addressing flowchart understanding and emphasizing FlowVQA's potential in introducing visual logic and reasoning to MLLMs.</p>
 
       <h2>
         <a id="user-content-header-2" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>People</h2>
-        <p>This project was created by <a href="https://www.linkedin.com/in/koseii/">Shubhankar Singh</a>, <a href="https://www.linkedin.com/in/purvi-chaurasia/">Purvi Chaurasia</a>, <a href="https://www.linkedin.com/in/yvarun25221/">Yerram Varun</a>, <a href="https://www.linkedin.com/in/pranshu-pandya/">Pranshu Pandya</a>, <a href="https://www.linkedin.com/in/vatsal-gupta-iitg/">Vatsal Gupta</a>, <a href="https://vgupta123.github.io/">Vivek Gupta</a> and <a href="https://www.cis.upenn.edu/~danroth/">Dan Roth</a>.</p>
+        <p style="text-align: justify;"> The FlowVQA dataset is prepared by the following people: </p>
+        <figure style="display: flex; flex-wrap: wrap; justify-content: center;">
+          <a href="https://www.linkedin.com/in/koseii/">
+            <img src="figures/Shubhankar.jpg" style="width:150px; height: 150px; margin: 10px;">
+            <figcaption>Shubhankar Singh</figcaption>
+        </a>
+        <a href="https://www.linkedin.com/in/purvi-chaurasia/">
+          <img src="figures/purvi.jpeg" style="width:150px; height: 150px; margin: 10px;">
+          <figcaption>Purvi Chaurasia</figcaption>
+      </a>
+      <a href="https://www.linkedin.com/in/yvarun25221/">
+        <img src="figures/varun.jpg" style="width:150px; height: 150px; margin: 10px;">
+        <figcaption>Yerram Varun</figcaption>
+    </a>
+    <a href="https://www.linkedin.com/in/pranshu-pandya/">
+      <img src="figures/Pranshu.jpg" style="width:150px; height: 150px; margin: 10px;">
+      <figcaption>Pranshu Pandya</figcaption>
+  </a>
+  <a href="https://www.linkedin.com/in/vatsal-gupta-iitg/">
+    <img src="figures/vatsal.jpg" style="width:150px; height: 150px; margin: 10px;">
+    <figcaption>Vatsal Gupta</figcaption>
+</a>
+<a href="https://vgupta123.github.io">
+  <img src="figures/vivek.jpeg" style="width:150px; height: 150px; margin: 10px;">
+  <figcaption>Vivek Gupta</figcaption>
+</a>
+<a href="https://www.cis.upenn.edu/~danroth/">
+  <img src="figures/dan.jpg" style="width:150px; height: 150px; margin: 10px;">
+  <figcaption>Dan Roth</figcaption>
+</a>
+      </figure>
+      
       <h2>
       <a id="user-content-header-2" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Citation</h3>
       <p>Please cite our paper as below if you use the FLOWVQA dataset.</p>
