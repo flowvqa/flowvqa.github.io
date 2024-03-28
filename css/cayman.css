@@ -17,11 +17,12 @@ a {
 
 .project-name {
   font-family: 'DM Sans', sans-serif;
-  font-size: 100px;
 }
 
 .project-tagline{
   font-weight: bold;
+  color: #e9ebec;
+  font-size: 100px;
 }
 
 .btn {
@@ -96,7 +97,7 @@ a {
   color: #fff;
   text-align: center;
   background-color: #720B98;
-  background: linear-gradient(109.6deg, rgb(243, 136, 136) 25.2%, rgb(196, 157, 247) 75.1%);
+  background: linear-gradient(179.4deg, rgb(12, 20, 69) -16.9%, rgb(71, 30, 84) 119.9%);
 
 }
 
