@@ -20,6 +20,10 @@ a {
   font-size: 100px;
 }
 
+.project-tagline{
+  font-weight: bold;
+}
+
 .btn {
   display: inline-block;
   margin-bottom: 1rem;
@@ -92,7 +96,7 @@ a {
   color: #fff;
   text-align: center;
   background-color: #720B98;
-  background: linear-gradient(89.7deg, rgb(0, 32, 95) 2.8%, rgb(132, 53, 142) 97.8%);
+  background: linear-gradient(109.6deg, rgb(243, 136, 136) 25.2%, rgb(196, 157, 247) 75.1%);
 
 }
 
