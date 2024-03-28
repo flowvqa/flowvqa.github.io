@@ -96,8 +96,8 @@ a {
 .page-header {
   color: #fff;
   text-align: center;
-  background-color: #720B98;
-  background: linear-gradient(179.4deg, rgb(12, 20, 69) -16.9%, rgb(71, 30, 84) 119.9%);
+  background: #34369A;
+  background: linear-gradient(315deg, #34369A, #140444);
 
 }
 
@@ -129,7 +129,8 @@ a {
 .project-tagline {
   margin-bottom: 2rem;
   font-weight: normal;
-  opacity: 0.7; }
+  opacity: 0.8; 
+  color: white;}
   @media screen and (min-width: 64em) {
     .project-tagline {
       font-size: 1.25rem; } }
